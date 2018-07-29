@@ -1,6 +1,4 @@
 
-
-
 let travelBuddies = [
     {
         name: "Beach Bum",

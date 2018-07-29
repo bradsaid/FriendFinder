@@ -191,29 +191,14 @@
 
     <script type="text/javascript">
 
-   
-    
-
         $(document).ready(function () {
             
-
             $('#auto_fill').on("click", function () {
-                // pick random names from array?
-                const url = window.location.origin;
-                console.log(url)
-                $.get('/api/friends', function(data){
-                    $('#name').val(data)
-                    console.log(data)
-                });
-                
-             
-
-      	
-
-
-
-                
-                $('#photo').val("Joe's Photo")
+               $.get('/api/randomName', function(data){
+                    let oneName = data[Math.floor(Math.random() * data.length)];
+                    $('#name').val(oneName)
+                });                
+                $('#photo').val("Joe's Photo Link")
                 $('#q1').val(Math.floor(Math.random() * 5) + 1 )
                 $('#q2').val(Math.floor(Math.random() * 5) + 1 )
                 $('#q3').val(Math.floor(Math.random() * 5) + 1 )
@@ -251,8 +236,15 @@
                             $('#q10').val()
                         ]
                     }
-                    console.log(input)
+                    $.post('/api/friends', input).done(function(data) {
+     
+                    })
+                    
+                    //console.log(input)
                 }
+                $.get('/api/friends', function(data){
+                    console.log(data)
+                });
             })
         })
 
