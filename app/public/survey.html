@@ -5,6 +5,9 @@
     <meta charset="utf-8">
     <title>TravelBuddy Survey</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <style>
+    #auto_fill {width: 25%;}
+    </style>
 
 </head>
 
@@ -12,6 +15,9 @@
     <div class="container">
         <h2>TravelBuddy Survey Questions</h2>
         <h4>Please Answer All Questions</h4>
+        <button type="button" class="btn btn-primary btn-lg btn-block" id="auto_fill">
+            <i class="fa fa-check-circle" aria-hidden="true"></i>
+            Populate All Answers</button>
         <hr>
         <h3>
             <strong>About You</strong>
@@ -184,8 +190,44 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
     <script type="text/javascript">
+
+   
+    
+
         $(document).ready(function () {
+            
+
+            $('#auto_fill').on("click", function () {
+                // pick random names from array?
+                const url = window.location.origin;
+                console.log(url)
+                $.get('/api/friends', function(data){
+                    $('#name').val(data)
+                    console.log(data)
+                });
+                
+             
+
+      	
+
+
+
+                
+                $('#photo').val("Joe's Photo")
+                $('#q1').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q2').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q3').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q4').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q5').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q6').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q7').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q8').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q9').val(Math.floor(Math.random() * 5) + 1 )
+                $('#q10').val(Math.floor(Math.random() * 5) + 1 )
+            })
+
             $('#submit').on("click", function () {
+                event.preventDefault();
                 let inputs = $('.form-control').length
                 let inputVal = $('.form-control').filter(function () {
                     return this.value != ""
@@ -197,16 +239,16 @@
                         name: $('#name').val().trim(),
                         photo: $('#photo').val().trim(),
                         scores: [
-                            $('#q1').val().trim(),
-                            $('#q2').val().trim(),
-                            $('#q3').val().trim(),
-                            $('#q4').val().trim(),
-                            $('#q5').val().trim(),
-                            $('#q6').val().trim(),
-                            $('#q7').val().trim(),
-                            $('#q8').val().trim(),
-                            $('#q9').val().trim(),
-                            $('#q10').val().trim()
+                            $('#q1').val(),
+                            $('#q2').val(),
+                            $('#q3').val(),
+                            $('#q4').val(),
+                            $('#q5').val(),
+                            $('#q6').val(),
+                            $('#q7').val(),
+                            $('#q8').val(),
+                            $('#q9').val(),
+                            $('#q10').val()
                         ]
                     }
                     console.log(input)
