@@ -2,7 +2,7 @@
 let travelBuddies = [
     {
         name: "Beach Bum",
-        photo: "https://pics.filmaffinity.com/the_beach_bum-276398383-mmed.jpg",
+        photo: "https://i0.wp.com/teaser-trailer.com/wp-content/uploads/Matthew-McConaughey-The-Beach-Bum-movie.jpg?ssl=1",
         scores: [
             5,
             1,

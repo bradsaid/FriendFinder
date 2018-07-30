@@ -15,8 +15,8 @@ module.exports = function(app) {
     app.get('/api/randomName', function(req, res) {
         res.json(randomName)
     })
-    app.post('/api/randomName', function(req, res) {
+    /*app.post('/api/randomName', function(req, res) {
         req.json(randomName)
-    })
+    })*/
 }
 
