@@ -11,7 +11,7 @@ module.exports = function (app) {
             return total + num
         }
 
-        for (let i = 0; i < friends.length; i++) {
+        for (let i = 1; i < friends.length; i++) {
             let friendsScore = friends[i].total_score
             let scoreArray = friends[i].scores
             friendsScore = scoreArray.reduce(sumArray)
@@ -25,21 +25,20 @@ module.exports = function (app) {
         newPersonTotalScore = newPersonScoreInt.reduce(sumArray)
 
         let lowestScoreArray = []
-        for (i = 0; i < friends.length; i++) {  // getting diff & set in object
+        for (i = 1; i < friends.length; i++) {  // getting diff & set in object
             friends[i].diff = (Math.abs(friends[i].total_score - newPersonTotalScore))
             lowestScoreArray.push(friends[i].diff)
         }
 
         let lowestScore = (Math.min(...lowestScoreArray))
-        let buddyName = ""
-        let buddyPhoto = ""
 
-        for (i = 0; i < friends.length; i++) {  // loop to match the lowest score to diff
+
+        for (i = 1; i < friends.length; i++) {  // loop to match the lowest score to diff
             let diff = friends[i].diff
             if (lowestScore === diff ) {
-                //console.log(friends[i].name)
-                buddyName = friends[i].name
-                buddyPhoto = friends[i].photo
+                friends[0].name = friends[i].name
+                friends[0].photo = friends[i].photo
+                console.log(friends[0].name)
             }
         }
 
