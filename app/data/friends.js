@@ -14,7 +14,9 @@ let travelBuddies = [
             5,
             4,
             1
-        ]
+        ],
+        total_score: 0,
+        diff: 0
     },
     {
         name: "Beach Bro",
@@ -30,7 +32,9 @@ let travelBuddies = [
             1,
             1,
             1
-        ]
+        ],
+        total_score: 0,
+        diff : 0
     },
     {
         name: "European Leather Bag",
@@ -46,7 +50,9 @@ let travelBuddies = [
             2,
             2,
             2
-        ]
+        ],
+        total_score: 0,
+        diff: 0
     }
 ]
 

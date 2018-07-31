@@ -11,45 +11,40 @@ module.exports = function (app) {
             return total + num
         }
 
-        let friendsScoresObj = {
-        }
-        let scoreSums = []
-        let diffSums = []
-
         for (let i = 0; i < friends.length; i++) {
-            friendsScoresObj[i] = { name: friends[i].name, score: friends[i].scores, photo: friends[i].photo }
-            //friendsScoresArray.push(friends[i].scores) // get each score array
+            let friendsScore = friends[i].total_score
+            let scoreArray = friends[i].scores
+            friendsScore = scoreArray.reduce(sumArray)
+            friends[i].total_score = friendsScore
         }
-
-        for (let i = 0; i < friendsScoresObj.length; i++) {   // loop through array and sum, pop into new array
-            // STUCK HERE - NEED TO GET SCORE FROM FRIENDSSCORESARRAY OBJECT
-            //scoreSums.push(score.reduce(sumArray))
-        }
-        //console.log(scoreSums)
 
         let newPersonScore = req.body.scores // gets scores from input
         let newPersonScoreInt = newPersonScore.map(function (x) {  // parse score as number
             return parseInt(x, 10);
         });
         newPersonTotalScore = newPersonScoreInt.reduce(sumArray)
-        //console.log(newPersonTotalScore)
 
-        for (i = 0; i < scoreSums.length; i++) {  // getting diff
-            diffSums.push((Math.abs(scoreSums[i] - newPersonTotalScore)))
+        let lowestScoreArray = []
+        for (i = 0; i < friends.length; i++) {  // getting diff & set in object
+            friends[i].diff = (Math.abs(friends[i].total_score - newPersonTotalScore))
+            lowestScoreArray.push(friends[i].diff)
         }
-        //console.log(diffSums)
-        let matchSum = (Math.min(...diffSums))
 
-       /* for (let i = 0; i < friends.length; i++) {
-            if (matchSum = friends.length)
-        }*/
+        let lowestScore = (Math.min(...lowestScoreArray))
+        let buddyName = ""
+        let buddyPhoto = ""
 
-
-
+        for (i = 0; i < friends.length; i++) {  // loop to match the lowest score to diff
+            let diff = friends[i].diff
+            if (lowestScore === diff ) {
+                //console.log(friends[i].name)
+                buddyName = friends[i].name
+                buddyPhoto = friends[i].photo
+            }
+        }
 
         friends.push(req.body)
-
-
+        //console.log(req.body)
     })
     app.get('/api/randomName', function (req, res) {
         res.json(randomName)
